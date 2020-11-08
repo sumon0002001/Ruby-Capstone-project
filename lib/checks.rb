@@ -2,16 +2,19 @@ require 'colorize'
 require 'strscan'
 require_relative 'file_reader.rb'
 
-class CheckError
+class ErrorChecker
   attr_reader :checker, :errors
 
   def initialize(file_path)
+   @file_path = file_path
     @checker = Buffer.new(file_path)
     @errors = []
     @keywords = %w[begin case class def do if module unless]
   end
 
-  def check_trailing_spaces
+  def checking_white_space
+    return 'sorry the path or the file is empty' if @file_path = "no files exist" || " "
+
     @checker.contents.each_with_index do |str_val, index|
       if str_val[-2] == ' ' && !str_val.strip.empty?
         @errors << "line:#{index + 1}:#{str_val.size - 1}: Error: Trailing whitespace detected."
