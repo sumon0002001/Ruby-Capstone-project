@@ -1,17 +1,16 @@
 require 'colorize'
+
 class Buffer
-  attr_reader :file_path, :error_msg, :contents
-  attr_writer :contents_count
+  attr_reader :error_msg, :content, :file_path, :content_size
   def initialize(file_path)
-    @file_path = file_path
     @error_msg = ''
-   
+    @file_path = file_path =~ @empty || file_path.nil? ? 'no path' : file_path
     begin
-      @contents = File.readlines(@file_path)
-      @contents_count = @contents.size
+      @content = File.readlines(@file_path)
+      @content_size = @content.size
     rescue StandardError => e
-      @contents = []
-      @error_msg = "Check file name or path again\n".colorize(:light_red) + e.to_s.colorize(:red)
+      @content= []
+      @error_msg = "sorry no file or path is found\n".colorize(:light_red) + e.to_s.colorize(:red)
     end
   end
 end
