@@ -29,7 +29,7 @@ describe ErrorChecker do
   describe '#check_empty_line_error' do
     it 'returns empty line error' do
       checker.check_empty_line_error
-      expect(checker.errors[0]).to eql('line:11 Extra empty line detected at class body beginning ')
+      expect(checker.errors[0]).to eql('line:11 Extra empty line detected at class body end ')
     end
   end
 end

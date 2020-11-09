@@ -66,15 +66,41 @@ class ErrorChecker
     log_error("line:#{i + 2} #{msg}") if @checker.content[i + 1].strip.empty?
   end
 
+  def check_def_empty_line(str_val, indx)
+    msg1 = 'Extra empty line detected at method body beginning'
+    msg2 = 'Use empty lines between method definition'
+
+    return unless str_val.strip.split(' ').first.eql?('def')
+
+    log_error("line:#{indx + 2} #{msg1}") if @checker.content[indx + 1].strip.empty?
+    log_error("line:#{indx + 1} #{msg2}") if @checker.content[indx - 1].strip.split(' ').first.eql?('end')
+  end
+
+  def check_end_empty_line(str_val, indx)
+    return unless str_val.strip.split(' ').first.eql?('end')
+
+    log_error("line:#{indx} Extra empty line detected at class body end") if @checker.content[indx - 1].strip.empty?
+  end
+
+
+  def check_do_empty_line(str_val, indx)
+    msg = 'Extra empty line detected at block body beginning'
+    return unless str_val.strip.split(' ').include?('do')
+
+    log_error("line:#{indx + 2} #{msg}") if @checker.content[indx + 1].strip.empty?
+  end
+
+
   def check_empty_line_error
     return 'the file path is invalid' if @file_path == 'the file path is invalid'
     @checker.content.each_with_index do |value, i|
       check_empty_line(value, i)
-      check_empty_line(value, i)
-      check_empty_line(value, i)
-      check_empty_line(value, i)
+      check_def_empty_line(value, i)
+      check_end_empty_line(value, i)
+      check_do_empty_line(value, i)
     end
   end
+  
 
   # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   
@@ -117,16 +143,6 @@ class ErrorChecker
 
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
-def check_empty_line(value, i)
-  return 'the file path is invalid' if @file_path == 'the file path is invalid'
-    msg1 = 'Extra empty line detected'
-    msg2 = 'Use empty lines between method definition'
-
-    return unless value.strip.split(' ').first.eql?('def')
-
-    log_error("line:#{i + 2} #{msg1}") if @checker.content[i + 1].strip.empty?
-    log_error("line:#{i + 1} #{msg2}") if @checker.content[i- 1].strip.split(' ').first.eql?('end')
-  end
 
   def log_error(error_msg)
     @errors << error_msg
