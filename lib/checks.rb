@@ -1,6 +1,8 @@
 require 'colorize'
 require 'strscan'
 require_relative 'file_reader.rb'
+# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+
 
 class ErrorChecker
   attr_reader :checker, :errors, :str
@@ -15,7 +17,7 @@ class ErrorChecker
   def checking_white_spaces
     return 'the path is not valid' if @file_path == 'the path is not valid'
     @checker.content.each_with_index do |value, i|
-      if value[-2] == ' nil' && !value.strip.empty?
+      if value[-2] == ' ' && !value.strip.empty?
         @errors << "line:#{i+ 1}:#{value.size - 1}: Error: whitespace detected."
         + " '#{value.gsub(/\s*$/, '_')}'"
       end
@@ -29,7 +31,6 @@ class ErrorChecker
       tag_end = []
       tag_begin << value.scan(args[0])
       tag_end << value.scan(args[1])
-
       new_arr = tag_begin.flatten.size <=> tag_end.flatten.size
 
       log_error("line:#{i + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}") if new_arr.eql?(1)
@@ -41,7 +42,6 @@ class ErrorChecker
     check_tag_error(/\(/, /\)/, '(', ')', 'Parenthesis')
     check_tag_error(/\{/, /\}/, '{', '}', 'Curly Bracket')
     check_tag_error(/\[/, /\]/, '[', ']', 'Square Bracket')
-   
   end
 
   def end_error
@@ -82,14 +82,12 @@ class ErrorChecker
     log_error("line:#{indx} Extra empty line detected at class body end") if @checker.content[indx - 1].strip.empty?
   end
 
-
   def check_do_empty_line(str_val, indx)
     msg = 'Extra empty line detected at block body beginning'
     return unless str_val.strip.split(' ').include?('do')
 
     log_error("line:#{indx + 2} #{msg}") if @checker.content[indx + 1].strip.empty?
   end
-
 
   def check_empty_line_error
     return 'the file path is invalid' if @file_path == 'the file path is invalid'
@@ -100,9 +98,6 @@ class ErrorChecker
       check_do_empty_line(value, i)
     end
   end
-  
-
-  # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   
   def indent_error(value, i, exp_val, msg)
     strip_line = value.strip.split(' ')
@@ -139,10 +134,7 @@ class ErrorChecker
     end
   end
 
-  private
-
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-
 
   def log_error(error_msg)
     @errors << error_msg

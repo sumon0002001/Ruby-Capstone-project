@@ -1,13 +1,12 @@
-class Ticket
-  def initialize(venue, date)
-    @venue = venue] 
-     @date = date
-
+module Person
+  def initialize(name, live)
+    @name = name] 
+     @live = live
   end
 
-  def fake_method(lines)
-    lines.each do |x|
+  def eat(food)
+    food.each do |x|
       puts x
-           end
+    end
   
 end
