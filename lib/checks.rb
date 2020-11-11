@@ -30,7 +30,7 @@ class ErrorChecker
   def end_error
     pos_start = 0
     pos_end = 0
-    @checker.content.each_with_index do |value, i|
+    @checker.content.each_with_index do |value, _i|
       pos_start += 1 if @str.include?(value.split(' ').first) || value.split(' ').include?('do')
       pos_end += 1 if value.strip == 'end'
     end
@@ -87,7 +87,7 @@ class ErrorChecker
   end
 
   # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-   
+
   def check_tag_error(*args)
     @checker.content.each_with_index do |value, i|
       tag_begin = []
@@ -105,7 +105,7 @@ class ErrorChecker
     msg = 'Extra empty line detected at class body beginning'
 
     return unless value.strip.split(' ').first.eql?('class')
-  
+
     log_error("line:#{index + 2} #{msg}") if @checker.content[index + 1].strip.empty?
   end
 
