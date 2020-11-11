@@ -146,7 +146,7 @@ $ bundle install
 **To check for errors on a file:** 
 
 ~~~bash
-$ bin/main bug.rb
+$ main bug.rb
 ~~~
 
 ## Testing
@@ -171,6 +171,12 @@ $ gem install rspec
 ~~~bash
 $ gem install colorize 
 ~~~
+
+
+~~~bash
+$ run rspec
+~~~
+
 
 
 # Author
