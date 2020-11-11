@@ -13,9 +13,9 @@ class ErrorChecker
   end
 
   def checking_white_spaces
-    @checker.content.each_with_index do |value, i|
+    @checker.content.each_with_index do |value, index|
       if value[-2] == ' ' && !value.strip.empty?
-        @errors << "line:#{i + 1}:#{value.size - 1}: Error: whitespace detected."
+        @errors << "line:#{index + 1}:#{value.size - 1}: Error: whitespace detected."
         + " '#{value.gsub(/\s*$/, '_')}'"
       end
     end
@@ -41,7 +41,7 @@ class ErrorChecker
   end
 
   def check_empty_line_error
-     @checker.content.each_with_index do |value, i|
+    @checker.content.each_with_index do |value, i|
       check_empty_line(value, i)
       check_def_empty_line(value, i)
       check_end_empty_line(value, i)
@@ -49,7 +49,7 @@ class ErrorChecker
     end
   end
 
-   # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+  # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   def check_indentation_error
     error_msg = 'IndentationWidth: Use 2 spaces for indentation.'
     cur_val = 0
@@ -86,7 +86,7 @@ class ErrorChecker
     end
   end
 
-# rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+  # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
    
   def check_tag_error(*args)
     @checker.content.each_with_index do |value, i|
@@ -101,12 +101,12 @@ class ErrorChecker
     end
   end
 
-  def check_empty_line(value, i)
+  def check_empty_line(value, index)
     msg = 'Extra empty line detected at class body beginning'
 
     return unless value.strip.split(' ').first.eql?('class')
   
-    log_error("line:#{i + 2} #{msg}") if @checker.content[i + 1].strip.empty?
+    log_error("line:#{index + 2} #{msg}") if @checker.content[index + 1].strip.empty?
   end
 
   def check_def_empty_line(str_val, indx)
@@ -123,7 +123,7 @@ class ErrorChecker
     return unless str_val.strip.split(' ').first.eql?('end')
 
     log_error("line:#{indx} Extra empty line detected at class body end") if @checker.content[indx - 1].strip.empty?
-    end
+  end
 
   def check_do_empty_line(str_val, indx)
     msg = 'Extra empty line detected at block body beginning'
