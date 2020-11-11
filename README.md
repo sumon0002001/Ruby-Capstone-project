@@ -143,11 +143,12 @@ $ git clone https://github.com/sumon0002001/Ruby-Capstone-project/tree/feature-b
 ```
 $ bundle install
 
-**To check for errors on a file:** 
+To run local copy of the repository please run the following commands on your terminal:
 
 ~~~bash
-$ main bug.rb
+$  main bug.rb
 ~~~
+
 
 ## Testing
 
