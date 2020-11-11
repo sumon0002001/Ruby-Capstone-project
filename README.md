@@ -38,8 +38,8 @@ module Person
   end
 ~~~
 
-## white spaces
-> note where the cursor(|) is on the bad code 
+## trailing white spaces
+
 ~~~ruby
 # Good Code
 

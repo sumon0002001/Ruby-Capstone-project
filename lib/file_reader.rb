@@ -9,7 +9,7 @@ class Buffer
       @content = File.readlines(@file_path)
       @content_size = @content.size
     rescue StandardError => e
-      @content= []
+      @content = []
       @error_msg = "sorry no file or path is found\n".colorize(:light_red) + e.to_s.colorize(:red)
     end
   end
