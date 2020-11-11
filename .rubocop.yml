@@ -50,5 +50,3 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: false
   
-Style/CaseEquality:
-  Enabled: false

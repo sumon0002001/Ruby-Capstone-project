@@ -12,27 +12,27 @@ The project was built completely with Ruby following all possible best practices
 # The Build
 The custom Ruby linter currently checks/detects for the following errors/warnings.
 - check for wrong indentation
-- check for trailing spaces
+- check for trailing white spaces
 - check for missing/unexpected tags i.e. '( )', '[ ]', and '{ }'
 - check missing/unexpected end
 - check empty line error
 
-> Below are demonstrations of good and bad code for the above cases. I will use the pipe '|' symbol to indicate cursor position where necessary.
+> Below are demonstrations of good and bad code for the above cases. 
 
 ## Indentation Error Check
 ~~~ruby
 # Good Code
 module Person
   def initialize(name, live)
-    @name = name] 
-     @live = live
+    @name = name 
+    @live = live
   end
 
 # Bad Code
 
 module Person
   def initialize(name, live)
-    @name = name] 
+    @name = name
      @live = live
   end
   end
@@ -45,14 +45,16 @@ module Person
 
 module Person
   def initialize(name, live)
-    @name = name] 
-     @live = live
+    @name = name
+    @live = live
   end
+end
+
 # Bad Code
 
 module Person
   def initialize(name, live)
-    @name = name] 
+    @name = name
      @live = live
   end
 end
@@ -64,7 +66,7 @@ end
 
 module Person
   def initialize(name, live)
-    @name = name] 
+    @name = name
      @live = live
   end
 end
@@ -72,9 +74,9 @@ end
 # Bad Code
 
 module Person
-  def initialize(name, live)
-    @name = name] 
-     @live = live
+  def initialize(name, live
+    @name = name
+     @live =[[live]
   end
 end
 ~~~
@@ -85,16 +87,16 @@ end
 
 module Person
   def initialize(name, live)
-    @name = name] 
+    @name = name
      @live = live
   end
-  end
+end
 
 # Bad Code
 
 module Person
   def initialize(name, live)
-    @name = name] 
+    @name = name
      @live = live
   end
   end
@@ -104,21 +106,24 @@ end
 ## Empty line error
 ~~~ruby
 # Good Code
+
 module Person
   def initialize(name, live)
-    @name = name] 
-     @live = live
+    @name = name
+    @live = live
   end
 end
 
 # Bad Code
 module Person
   def initialize(name, live)
-    @name = name] 
-     @live = live
+    
+    
+    @name = name
+    @live = live
   end
 end
-~~~
+
 
 ## Built With
 - Ruby
@@ -136,6 +141,7 @@ $ cd <folder>
 ```
 $ git clone https://github.com/sumon0002001/Ruby-Capstone-project/tree/feature-branch
 ```
+$ bundle install
 
 **To check for errors on a file:** 
 
@@ -148,11 +154,7 @@ $ bin/main bug.rb
 To test the code, run `rspec` from root of the folder using terminal.
 Note: `bug.rb` has been excluded from rubocop checks to allow RSpec testing without interfering with Gitflow actions
 
-> Rspec is used for the test, to install the gem file, run
-
-~~~bash
-$ bundle install 
-~~~
+> Rspec is used for the test, to install the gem file,
 
 > But before that, make sure you have **bundler** installed on your system, else run
 
@@ -173,7 +175,7 @@ $ gem install colorize
 
 # Author
 
-👤 **Uduak Essien**
+👤 **Mir Rawshan Ali**
 
 - Github: [@sumon0002001](https://github.com/sumon0002001)
 - Twitter: [@Sumon0002009](https://twitter.com/Sumon0002009)
