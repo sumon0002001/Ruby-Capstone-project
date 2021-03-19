@@ -139,7 +139,7 @@ $ cd <folder>
 ```
 
 ```
-$ git clone https://github.com/sumon0002001/Ruby-Capstone-project/tree/feature-branch
+$ git clone https://github.com/imran5644/Ruby-Capstone-project.git
 ```
 $ bundle install
 
@@ -184,9 +184,9 @@ $ run rspec
 
 👤 **Mir Rawshan Ali**
 
-- Github: [@sumon0002001](https://github.com/sumon0002001)
-- Twitter: [@Sumon0002009](https://twitter.com/Sumon0002009)
-- Linkedin: [faru-stefen-803364172](https://www.linkedin.com/in/faru-stefen-803364172/)
+- Github: [@imran5644](https://github.com/imran5644)
+- Twitter: [@imran56444](https://twitter.com/imran56444)
+- Linkedin: [Imran Yousaf](https://www.linkedin.com/in/imran-yousaf5644/)
 
 
 ## 🤝 Contributing
